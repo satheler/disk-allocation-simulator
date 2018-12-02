@@ -4,7 +4,7 @@
 
 This solution consists of a proposal of a mechanism of allocation of files in disk sectors.
 
-img_main
+![main](https://raw.githubusercontent.com/gustavosatheler/disk-allocation-simulator/master/doc/screenshots/main.png)
 
 This implementation has an appropriate graphical interface for file creation interaction.
 The file structure is defined as follows:
@@ -32,3 +32,13 @@ $ npm install
 # Run the app
 $ npm run dev
 ```
+
+## Features
+Allocation of files
+![allocation](https://raw.githubusercontent.com/gustavosatheler/disk-allocation-simulator/master/doc/screenshots/allocation.png)
+
+Popover for identification of file in the block
+![block-with-popover](https://raw.githubusercontent.com/gustavosatheler/disk-allocation-simulator/master/doc/screenshots/block-with-popover.PNG)
+
+Edit files
+![edit_file.PNG](https://raw.githubusercontent.com/gustavosatheler/disk-allocation-simulator/master/doc/screenshots/edit_file.PNG)
