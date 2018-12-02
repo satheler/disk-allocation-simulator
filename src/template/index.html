@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+	<head>
+		<meta charset="UTF-8" />
+		<link rel="stylesheet" href="css/bootstrap.min.css" />
+		<link rel="stylesheet" href="css/bootstrap-colorpicker.min.css" />
+		<link rel="stylesheet" href="css/toastr.min.css" />
+		<link rel="stylesheet" href="css/style.css" />
+		<title>Simulador de Alocação de Arquivos em Disco</title>
+	</head>
+	<body>
+		<div id="particles"></div>
+		<nav class="navbar navbar-expand-md default mx-auto order-0"><a class="navbar-brand mx-auto">Simulador de Alocação de Arquivos em Disco</a></nav>
+
+		<main role="main" class="ml-3 mr-3 mt-3 mb-3">
+			<div class="row">
+				<div class="col-4">
+					<div class="card text-white bg-dark">
+						<div class="card-header text-center"><b>Adicionar arquivo</b></div>
+						<div class="card-body default-body">
+							<form id="form-add" method="POST">
+								<label for="nomeArquivo">Nome do arquivo</label>
+								<div class="input-group form-group">
+									<span class="input-group-prepend" id="cor_add">
+										<span class="input-group-text colorpicker-input-addon"><i></i></span>
+									</span>
+									<input type="text" class="form-control" id="nomeArquivo_add" name="nomeArquivo_add" placeholder="Informe o nome do arquivo" />
+								</div>
+								<div class="form-row text-center">
+									<div class="col-6">
+										<div class="form-group">
+											<label for="tamanho">Tamanho (mb)</label>
+											<input type="number" class="form-control" id="tamanho_add" name="tamanho_add" placeholder="Informe o tamanho do arquivo" />
+										</div>
+									</div>
+									<div class="col-6">
+										<div class="form-group">
+											<label for="dataCriacao">Data de criação</label>
+											<input type="text" class="form-control" name="dataCriacao" id="dataCriacao" style="cursor: not-allowed" readonly disabled />
+										</div>
+									</div>
+								</div>
+								<div class="form-row">
+									<div class="col-4"></div>
+									<div class="col-4"></div>
+									<div class="col-4">
+										<button type="submit" class="btn btn-success" style="width: 100%"><i class="fa fa-plus">&nbsp;</i> Adicionar</button>
+									</div>
+								</div>
+							</form>
+						</div>
+					</div>
+					<br />
+					<div class="card text-white bg-dark table-limit">
+						<table class="table table-striped table-hover table-dark">
+							<thead class="thead-dark">
+								<tr>
+									<th scope="col">#</th>
+									<th scope="col">Nome do arquivo</th>
+									<th scope="col">Data criação</th>
+								</tr>
+							</thead>
+
+							<tbody id="listaArquivos">
+								<tr id="listaVazia">
+									<td colspan="3" class="text-center">Nenhum arquivo foi adicionado.</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+				</div>
+				<div class="col-8">
+					<div class="card text-white bg-dark">
+						<div class="card-header text-center"><b>Blocos no disco</b></div>
+						<div class="card-body default-body pt-0 pr-0 pl-0 pb-0">
+							<table class="table table-bordered table-dark mb-2">
+								<tbody id="blocos"></tbody>
+							</table>
+							<div class="row text-center mb-2">
+								<div class="col-4">Disponível: <span id="disponivel">1024</span>mb</div>
+								<div class="col-4">Alocado: <span id="alocado">0</span>mb</div>
+								<div class="col-4 border-left">Tamanho total: <span id="tamanhoTotal">1024</span>mb</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</main>
+
+		<div class="modal fade" id="editarArquivo" tabindex="-1" role="dialog" aria-labelledby="editarArquivo" aria-hidden="true">
+			<div class="modal-dialog modal-dialog-centered" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h5 class="modal-title">Editar arquivo</h5>
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+					</div>
+					<form id="form-edit" action="POST">
+						<input type="hidden" name="hash" id="hash" />
+						<div class="modal-body">
+							<div class="input-group form-group">
+								<span class="input-group-prepend">
+									<span class="input-group-text colorpicker-input-addon"><i id="cor_edit"></i></span>
+								</span>
+								<input type="text" class="form-control" id="nomeArquivo_edit" name="nomeArquivo_edit" placeholder="Informe o nome do arquivo" />
+							</div>
+							<div class="form-row text-center">
+								<div class="col-6">
+									<div class="form-group">
+										<label for="tamanho">Tamanho (mb)</label>
+										<input type="number" class="form-control" id="tamanho_edit" name="tamanho_edit" placeholder="Informe o tamanho do arquivo" />
+									</div>
+								</div>
+								<div class="col-6">
+									<div class="form-group">
+										<label for="dataCriacao">Data de criação</label>
+										<input type="text" class="form-control" name="dataCriacao_edit" id="dataCriacao_edit" readonly style="cursor: not-allowed" />
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button><button type="submit" class="btn btn-primary">Salvar</button>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+
+		<script src="js/require.js"></script>
+		<script src="js/modernizr.custom.js"></script>
+		<script src="js/popper.min.js"></script>
+		<script src="js/bootstrap.min.js"></script>
+		<script src="js/font-awesome.js"></script>
+		<script src="js/particles.min.js"></script>
+		<script src="js/jquery.validate.min.js"></script>
+		<script src="js/bootstrap-colorpicker.min.js"></script>
+
+		<script src="js/arquivo.js"></script>
+		<script src="js/lista.js"></script>
+		<script src="js/disco.js"></script>
+		<script src="js/bloco.js"></script>
+		<script src="js/script.js"></script>
+		<script src="js/validacao.js"></script>
+	</body>
+</html>

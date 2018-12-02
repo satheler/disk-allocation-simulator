@@ -1,0 +1,86 @@
+:root {
+    --primary-color: #000000;
+    --secundary-color: #000000;
+    --font-color: white;
+    --trans: rgba(184, 184, 184, 0.66)
+}
+
+* {
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+.default {
+    background-color: var(--primary-color);
+    color: var(--font-color)
+}
+
+.default-body {
+    background: rgba(0, 0, 0, 0.1)
+}
+
+.card-header-custom {
+    background-color: #0E0437;
+    border-color: #0E0437;
+    border-radius: .25em;
+}
+
+#particles canvas {
+    background-color: var(--primary-color);
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+}
+
+.escurecer {
+    background-color: rgba(0, 0, 0)
+}
+
+.card-custom {
+    border-color: var(--primary-color)
+}
+
+#blocos {
+    text-align: center
+}
+
+label.is-invalid {
+    display: none;
+    width: 100%;
+    margin-top: .25rem;
+    font-size: 80%;
+    color: #dc3545;
+}
+
+input.is-invalid::placeholder {
+    color: #dc3545;
+}
+
+.card.bg-dark {
+    background-color: rgba(52, 58, 64, 0.5) !important;
+}
+
+.card-header.text-center {
+    background-color: rgba(52, 58, 64, 0.6) !important;
+}
+
+button.bloco {
+    width: 100%;
+    height: 100%;
+    margin: 0px;
+    border: 0px;
+    padding: 0px;
+    opacity: 0;
+}
+
+div.table-limit {
+    overflow-y: auto;
+    height: 568px;
+}
+
+/* table.table-limit {
+    height: 100%
+}  */

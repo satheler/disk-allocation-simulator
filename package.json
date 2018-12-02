@@ -1,0 +1,21 @@
+{
+	"name": "disk-allocation-simulator",
+	"version": "1.0.0",
+	"main": "src/index.js",
+	"license": "MIT",
+	"author": "Gustavo Bittencourt Satheler",
+	"scripts": {
+		"dev": "electron .",
+		"build": "electron-packager . --out build"
+	},
+	"devDependencies": {
+		"electron": "^3.0.10",
+		"electron-packager": "^12.2.0"
+	},
+	"dependencies": {
+		"crypto-js": "^3.1.9-1",
+		"jquery": "^3.3.1",
+		"moment": "^2.22.2",
+		"toastr": "^2.1.4"
+	}
+}
