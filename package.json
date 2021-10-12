@@ -9,7 +9,7 @@
 		"build": "electron-packager . --out build"
 	},
 	"devDependencies": {
-		"electron": "^3.0.10",
+		"electron": "^11.5.0",
 		"electron-packager": "^12.2.0"
 	},
 	"dependencies": {
