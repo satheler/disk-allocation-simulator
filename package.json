@@ -10,7 +10,7 @@
 	},
 	"devDependencies": {
 		"electron": "^3.0.10",
-		"electron-packager": "^12.2.0"
+		"electron-packager": "^16.0.0"
 	},
 	"dependencies": {
 		"crypto-js": "^3.1.9-1",
